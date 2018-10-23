@@ -8,6 +8,12 @@ DEBUG=1
 VERBOSE=1
 RUNDIR=$(mktemp -d)
 
+
+[ ! $# -eq 1 ] && echo "⚠ Usage: $0 INPUTDIR" && exit 0
+INPUTDIR=$1
+[ ! -d "$INPUTDIR" ] && echo "⚠ Directory \"$INPUTDIR\" is missing!" && exit 0
+cp -rf $INPUTDIR/* $RUNDIR/
+
 cd $RUNDIR && git clone $VPLMODEL &> /dev/null && cd -
 source $RUNDIR/vplmodel/toolkit.sh
 START

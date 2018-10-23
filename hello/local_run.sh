@@ -6,8 +6,6 @@ BRANCH="demo"
 EXO="hello"
 DEBUG=1
 VERBOSE=1
-# RUNDIR=$HOME
-# RUNDIR=$(dirname $(realpath $0))
 RUNDIR=$(mktemp -d)
 
 cd $RUNDIR && git clone $VPLMODEL &> /dev/null && cd -

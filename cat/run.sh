@@ -28,24 +28,26 @@ GRADE=0
 
 ### 1) compilation
 ECHO "-COMPILATION"
-CFLAGS="-std=c99 -Wall"
-TRACE "gcc $CFLAGS mycat.c -o mycat"
-[ ! $? -eq 0 ] && ECHO "⚠ Compilation failure!" && exit 0
+CFLAGS="-std=c99 -Werror"
+gcc $CFLAGS mycat.c -o mycat
+[ ! $? -eq 0 ] && ECHO "⚠ Compilation failure!" && EXIT
 
-TRACE "cp $RUNDIR/GIT/$EXO/solution.c $RUNDIR && gcc $CFLAGS solution.c -o solution"
-[ ! $? -eq 0 ] && ECHO "⚠ VPL Script Error!" && exit 0
+CFLAGS="-std=c99 -Wall"
+cp $RUNDIR/GIT/$EXO/solution.c $RUNDIR && gcc $CFLAGS solution.c -o solution
+[ ! $? -eq 0 ] && ECHO "⚠ Oups... VPL Script Error!" && exit 0
 
 ### 2) execution
 
 ECHO "-EXECUTION"
 
-echo "abcdef" | ./mycat > mycat.out
-[ ! $? -eq 0 ] && ECHO "⚠ Execution failure!" && exit 0
-echo "abcdef" | ./solution > solution.out
-[ ! $? -eq 0 ] && ECHO "⚠ VPL Script Error!" && exit 0
+echo "abcdef" | ./mycat > mycat.out 2> /dev/null
+[ ! $? -eq 0 ] && ECHO "⚠ Execution failure!" && EXIT
 
-TRACE "diff -q mycat.out solution.out"
-[ ! $? -eq 0 ] && ECHO "⚠ Your program is invalid!" && exit 0
+echo "abcdef" | ./solution > solution.out 2> /dev/null
+[ ! $? -eq 0 ] && ECHO "⚠ Oups... VPL Script Error!" && exit 0
+
+diff -q mycat.out solution.out &> /dev/null
+[ ! $? -eq 0 ] && ECHO "⚠ Your program is invalid!" && EXIT
 
 ECHO "✓ Success!"
 BONUS=100

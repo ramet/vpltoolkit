@@ -2,6 +2,7 @@
 
 echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
 
+env
 
 ### 1) compilation
 ECHO "-COMPILATION"

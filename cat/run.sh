@@ -1,8 +1,9 @@
 #!/bin/bash
 
+### 0) load vplmodel
 echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
-
-env
+source $RUNDIR/vplmodel/vplmodel.sh
+ECHO "hello world!"
 
 ### 1) compilation
 ECHO "-COMPILATION"

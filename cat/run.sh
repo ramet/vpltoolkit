@@ -29,7 +29,7 @@ GRADE=0
 ### 1) compilation
 ECHO "-COMPILATION"
 CFLAGS="-std=c99 -Werror"
-gcc $CFLAGS mycat.c -o mycat
+TRACE "gcc $CFLAGS mycat.c -o mycat"
 [ ! $? -eq 0 ] && ECHO "⚠ Compilation failure!" && EXIT
 
 CFLAGS="-std=c99 -Wall"
@@ -40,10 +40,12 @@ cp $RUNDIR/GIT/$EXO/solution.c $RUNDIR && gcc $CFLAGS solution.c -o solution
 
 ECHO "-EXECUTION"
 
-echo "abcdef" | ./mycat > mycat.out 2> /dev/null
+echo "abcdef" > mycat.in
+
+TRACE "cat mycat.in | ./mycat > mycat.out"
 [ ! $? -eq 0 ] && ECHO "⚠ Execution failure!" && EXIT
 
-echo "abcdef" | ./solution > solution.out 2> /dev/null
+cat mycat.in | ./solution > solution.out 2> /dev/null
 [ ! $? -eq 0 ] && ECHO "⚠ Oups... VPL Script Error!" && exit 0
 
 diff -q mycat.out solution.out &> /dev/null

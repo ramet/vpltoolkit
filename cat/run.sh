@@ -5,10 +5,8 @@ echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
 source $RUNDIR/vplmodel/vplmodel.sh
 ECHO "hello world!"
 
-env
-
+pwd
 ls
-
 
 ### 1) compilation
 ECHO "-COMPILATION"

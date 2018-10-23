@@ -6,5 +6,3 @@ source $RUNDIR/vplmodel/vplmodel.sh
 
 ### 1) do your stuff
 ECHO "hello world!"
-
-

@@ -5,6 +5,11 @@ echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
 source $RUNDIR/vplmodel/vplmodel.sh
 ECHO "hello world!"
 
+env
+
+ls
+
+
 ### 1) compilation
 ECHO "-COMPILATION"
 CFLAGS="-std=c99 -Wall"

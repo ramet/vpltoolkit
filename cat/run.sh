@@ -2,7 +2,7 @@
 
 ### 0) load vplmodel
 echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
-source $RUNDIR/vplmodel/vplmodel.sh
+source $RUNDIR/vplmodel/toolkit.sh
 source $RUNDIR/vpl_environment.sh
 
 # $RUNDIR <-- you start here

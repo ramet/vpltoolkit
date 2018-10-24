@@ -25,7 +25,6 @@ source $RUNDIR/vplmodel/toolkit.sh
 CHECK "mycat.c"
 GRADE=0
 
-
 ### 1) compilation
 ECHO "-COMPILATION"
 CFLAGS="-std=c99 -Werror"
@@ -43,18 +42,17 @@ ECHO "-EXECUTION"
 
 echo "abcdef" > mycat.in
 
-TRACE "cat mycat.in | ./mycat > mycat.out"
+cat mycat.in | ./mycat > mycat.out
 [ ! $? -eq 0 ] && ECHO "⚠ Execution failure!" && EXIT
-ECHO "✓ Success!"
 
 cat mycat.in | ./solution > solution.out 2> /dev/null
 [ ! $? -eq 0 ] && ECHO "⚠ Oups... VPL Script Error!" && exit 0
 
-ECHO "Output Analysis"
 diff -q mycat.out solution.out &> /dev/null
 [ ! $? -eq 0 ] && ECHO "⚠ Your program is invalid!" && EXIT
 ECHO "✓ Success!"
 
+### Grade
 
 BONUS=100
 GRADE=$((GRADE+BONUS))

@@ -5,22 +5,6 @@ echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
 source $RUNDIR/vplmodel/toolkit.sh
 # source $RUNDIR/vpl_environment.sh
 
-# $RUNDIR <-- you start here
-# $RUNDIR/vplmodel/*
-# $RUNDIR/GIT/$EXO/*
-
-# ECHO "hello world!"
-
-# if eval $TEST ; then
-#     [ ! -z "$MSGOK" ] && ECHO "✓ $MSGOK [+$BONUS]"
-#     GRADE=$((GRADE+BONUS))
-#     eval $CMDOK
-# else
-#     [ ! -z "$MSGKO" ] && ECHO "⚠ $MSGKO [-$MALUS]"
-#     GRADE=$((GRADE-MALUS))
-#     eval $CMDKO
-# fi
-
 ### check inputs
 CHECK "mycat.c"
 GRADE=0

@@ -4,10 +4,7 @@
 echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
 
 ### prepare & check inputs
-
 cd $RUNDIR
-mkdir inputs
-cp $HOME/mycat.c $RUNDIR/inputs/
 CHECK "inputs/mycat.c"
 
 GRADE=0

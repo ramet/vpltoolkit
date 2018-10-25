@@ -2,22 +2,31 @@
 
 ### 0) load vplmodel
 echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
-source $RUNDIR/vplmodel/toolkit.sh
-# source $RUNDIR/vpl_environment.sh
+# source $RUNDIR/vplmodel/toolkit.sh
+source $RUNDIR/vpl_environment.sh
+env | grep VPL
+ls $HOME
 
-### check inputs
-CHECK "mycat.c"
+### prepare & check inputs
+
+cd $RUNDIR
+mkdir inputs
+cp $HOME/mycat.c $RUNDIR/inputs/
+CHECK "inputs/mycat.c"
+
 GRADE=0
 
 ### 1) compilation
 ECHO "-COMPILATION"
 CFLAGS="-std=c99 -Werror"
+cp inputs/mycat.c $RUNDIR
 TRACE "gcc $CFLAGS mycat.c -o mycat"
 [ ! $? -eq 0 ] && ECHO "⚠ Compilation failure!" && EXIT
 ECHO "✓ Success!"
 
 CFLAGS="-std=c99 -Wall"
-cp $RUNDIR/GIT/$EXO/solution.c $RUNDIR && gcc $CFLAGS solution.c -o solution
+cp $RUNDIR/download/$EXO/solution.c $RUNDIR
+gcc $CFLAGS solution.c -o solution
 [ ! $? -eq 0 ] && ECHO "⚠ Oups... VPL Script Error!" && exit 0
 
 ### 2) execution

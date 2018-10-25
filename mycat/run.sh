@@ -18,7 +18,7 @@ TRACE "gcc $CFLAGS mycat.c -o mycat"
 ECHO "✓ Success!"
 
 CFLAGS="-std=c99 -Wall"
-cp $RUNDIR/download/$EXO/solution.c $RUNDIR
+cp $RUNDIR/download/solution.c $RUNDIR
 gcc $CFLAGS solution.c -o solution
 [ ! $? -eq 0 ] && ECHO "⚠ Oups... VPL Script Error!" && exit 0
 

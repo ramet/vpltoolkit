@@ -30,4 +30,5 @@ cat mycat.in | ./mycat > mycat.out
 diff -q mycat.in mycat.out &> /dev/null
 [ ! $? -eq 0 ] && ECHO "⚠ Your program output is invalid!" && EXIT
 ECHO "✓ Success!" && SCORE 70
+
 ECHO && EXIT

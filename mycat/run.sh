@@ -2,7 +2,7 @@
 
 ### 0) initialization
 source env.sh
-source vplmodel/toolkit.sh
+source vpltoolkit/toolkit.sh
 [ ! "$RUNDIR" = "$PWD" ] && echo "⚠ RUNDIR is not set correctly!" && exit 0
 cd $RUNDIR
 CHECK "inputs/mycat.c"

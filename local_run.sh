@@ -1,4 +1,8 @@
 #!/bin/bash
+[ $# -ne 2 ] && echo "⚠ Usage: $0 <exo> <inputdir>" && exit 0
+
+EXO=$1
+INPUTDIR=$2
 
 VPLMODEL="https://github.com/orel33/vplmodel.git"
 RUNDIR=$(mktemp -d)
@@ -9,6 +13,5 @@ VERBOSE=1
 ( cd $RUNDIR && git clone $VPLMODEL &> /dev/null )
 source $RUNDIR/vplmodel/toolkit.sh
 
-EXO="mycat"
 DOWNLOAD "https://github.com/orel33/vplmodel.git" "demo" $EXO
-START_OFFLINE $1
+START_OFFLINE $INPUTDIR

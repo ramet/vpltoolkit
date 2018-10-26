@@ -10,18 +10,19 @@ GRADE=0
 
 ### 1) compilation
 
-ECHO "-COMPILATION" && ECHO
+ECHO "-COMPILATION"
 
 CFLAGS="-std=c99 -Wall"
 cp inputs/mycat.c $RUNDIR
 TRACE "gcc $CFLAGS mycat.c -o mycat &> warnings"
 [ ! $? -eq 0 ] && ECHO "⚠ Compilation failure!" && EXIT
-[ ! -s warnings ] && ECHO "⚠ Compilation warnings!" && SCORE -20
+[ -s warnings ] && ECHO "⚠ Compilation warnings!" && SCORE -20
 ECHO "✓ Success!" && SCORE 30
+ECHO
 
 ### 2) execution
 
-ECHO "-EXECUTION" && ECHO
+ECHO "-EXECUTION"
 
 echo "abcdef" > mycat.in
 cat mycat.in | ./mycat > mycat.out
@@ -29,5 +30,4 @@ cat mycat.in | ./mycat > mycat.out
 diff -q mycat.in mycat.out &> /dev/null
 [ ! $? -eq 0 ] && ECHO "⚠ Your program output is invalid!" && EXIT
 ECHO "✓ Success!" && SCORE 70
-
 ECHO && EXIT

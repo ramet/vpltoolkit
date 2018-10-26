@@ -6,7 +6,6 @@ INPUTDIR=$2
 
 VPLMODEL="https://github.com/orel33/vplmodel.git"
 RUNDIR=$(mktemp -d)
-MODE="RUN"
 
 ( cd $RUNDIR && git clone $VPLMODEL &> /dev/null )
 source $RUNDIR/vplmodel/toolkit.sh

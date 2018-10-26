@@ -9,7 +9,6 @@ CHECK "inputs/mycat.c"
 GRADE=0
 
 ### 1) compilation
-
 ECHO "-COMPILATION"
 CFLAGS="-std=c99 -Wall"
 cp inputs/mycat.c $RUNDIR
@@ -20,7 +19,6 @@ ECHO "✓ Success!" && SCORE 30
 ECHO
 
 ### 2) execution
-
 ECHO "-EXECUTION"
 echo "abcdef" > mycat.in
 cat mycat.in | ./mycat > mycat.out

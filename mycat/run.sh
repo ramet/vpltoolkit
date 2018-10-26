@@ -1,6 +1,10 @@
 #!/bin/bash
 
 ### 0) load vplmodel
+source env.sh
+source vplmodel/toolkit.sh
+
+
 echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
 
 ### prepare & check inputs

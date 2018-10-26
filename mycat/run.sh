@@ -4,7 +4,7 @@
 source env.sh
 source vplmodel/toolkit.sh
 
-[ "$RUNDIR" = "$PWD" ] && echo "⚠ RUNDIR is not correctly set!" && exit 0
+[ ! "$RUNDIR" = "$PWD" ] && echo "⚠ RUNDIR is not set correctly!" && exit 0
 
 echo "=> Run \"$EXO\" in mode $MODE with RUNDIR=$RUNDIR..."
 

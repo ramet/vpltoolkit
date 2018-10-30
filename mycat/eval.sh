@@ -20,7 +20,7 @@ ECHO
 
 ### 2) execution
 ECHO "-EXECUTION"
-TRACEV "echo abcdef > mycat.in"
+TRACEV "echo \"abcdef\" > mycat.in"
 TRACEV "cat mycat.in | ./mycat > mycat.out"
 [ ! $? -eq 0 ] && ECHO "⚠ Execution failure!" && EXIT
 TRACEV "diff -q mycat.in mycat.out"

@@ -9,9 +9,6 @@ CHECKINPUTS
 COPYINPUTS
 GRADE=0
 
-# CHECK "inputs/mycat.c"
-# cp inputs/mycat.c $RUNDIR
-
 ### 1) compilation
 ECHO "-COMPILATION"
 CFLAGS="-std=c99 -Wall"
@@ -23,7 +20,7 @@ ECHO
 
 ### 2) execution
 ECHO "-EXECUTION"
-TRACEV "echo "abcdef" > mycat.in"
+TRACEV "echo abcdef > mycat.in"
 TRACEV "cat mycat.in | ./mycat > mycat.out"
 [ ! $? -eq 0 ] && ECHO "⚠ Execution failure!" && EXIT
 TRACEV "diff -q mycat.in mycat.out"

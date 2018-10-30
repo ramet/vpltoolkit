@@ -4,26 +4,22 @@
 source env.sh
 source vpltoolkit/toolkit.sh
 [ ! "$RUNDIR" = "$PWD" ] && echo "⚠ RUNDIR is not set correctly!" && exit 0
-cd $RUNDIR
-CHECK "inputs/mycat.c"
-GRADE=0
+
+CHECKINPUTS
+COPYINPUTS $RUNDIR
+
+# CHECK "inputs/mycat.c"
+# cp inputs/mycat.c $RUNDIR
 
 ### 1) compilation
 ECHO "-COMPILATION"
 CFLAGS="-std=c99 -Wall"
-cp inputs/mycat.c $RUNDIR
-TRACE "gcc $CFLAGS mycat.c -o mycat &> warnings"
+TRACE "gcc $CFLAGS mycat.c -o mycat"
 [ ! $? -eq 0 ] && ECHO "⚠ Compilation failure!" && EXIT
-[ -s warnings ] && ECHO "⚠ Compilation warnings!" && SCORE -20
-ECHO "✓ Success!" && SCORE 30
-ECHO
 
 ### 2) execution
 ECHO "-EXECUTION"
-echo "abcdef" > mycat.in
-cat mycat.in | ./mycat > mycat.out
-[ ! $? -eq 0 ] && ECHO "⚠ Execution failure!" && EXIT
-diff -q mycat.in mycat.out &> /dev/null
+TRACE "echo "abcdef" > mycat.in && cat mycat.in"
+TRACE "cat mycat.in | ./mycat tee mycat.out"
+TRACE "diff -q mycat.in mycat.out"
 [ ! $? -eq 0 ] && ECHO "⚠ Your program output is invalid!" && EXIT
-ECHO "✓ Success!" && SCORE 70
-EXIT

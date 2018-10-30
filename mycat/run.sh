@@ -8,18 +8,15 @@ source vpltoolkit/toolkit.sh
 CHECKINPUTS
 COPYINPUTS
 
-# CHECK "inputs/mycat.c"
-# cp inputs/mycat.c $RUNDIR
-
 ### 1) compilation
-ECHO "-COMPILATION"
+echo "-COMPILATION"
 CFLAGS="-std=c99 -Wall"
 TRACE "gcc $CFLAGS mycat.c -o mycat"
-[ ! $? -eq 0 ] && ECHO "⚠ Compilation failure!" && EXIT
+[ ! $? -eq 0 ] && echo "⚠ Compilation failure!" && exit 0
 
 ### 2) execution
-ECHO "-EXECUTION"
+echo "-EXECUTION"
 TRACE "echo "abcdef" > mycat.in && cat mycat.in"
-TRACE "cat mycat.in | ./mycat tee mycat.out"
+TRACE "cat mycat.in | ./mycat | tee mycat.out"
 TRACE "diff -q mycat.in mycat.out"
-[ ! $? -eq 0 ] && ECHO "⚠ Your program output is invalid!" && EXIT
+[ ! $? -eq 0 ] && echo "⚠ Your program output is invalid!" && exit 0

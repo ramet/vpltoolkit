@@ -6,7 +6,7 @@ source vpltoolkit/toolkit.sh
 [ ! "$RUNDIR" = "$PWD" ] && echo "⚠ RUNDIR is not set correctly!" && exit 0
 
 CHECKINPUTS
-COPYINPUTS $RUNDIR
+COPYINPUTS
 GRADE=0
 
 # CHECK "inputs/mycat.c"

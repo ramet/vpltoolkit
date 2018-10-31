@@ -1,13 +1,13 @@
 #!/bin/bash
 
-### 0) initialization
+### init
 source env.sh
 source vpltoolkit/toolkit.sh
 [ ! "$RUNDIR" = "$PWD" ] && echo "⚠ RUNDIR is not set correctly!" && exit 0
-
 CHECKINPUTS
 COPYINPUTS
 
+### run
 CFLAGS="-std=c99 -Wall"
 TRACE "gcc $CFLAGS mycat.c -o mycat"
 [ ! $? -eq 0 ] && echo "⚠ Compilation failure!" && exit 0

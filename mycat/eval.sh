@@ -4,26 +4,23 @@
 source env.sh
 source vpltoolkit/toolkit.sh
 [ ! "$RUNDIR" = "$PWD" ] && echo "⚠ RUNDIR is not set correctly!" && exit 0
-
 CHECKINPUTS
 COPYINPUTS
 GRADE=0
 
-### 1) compilation
-ECHO "-COMPILATION"
+### compilation
+TITLE "COMPILATION"
 CFLAGS="-std=c99 -Wall"
-TRACEV "gcc $CFLAGS mycat.c -o mycat &> warnings"
-[ ! $? -eq 0 ] && ECHO "⚠ Compilation failure!" && EXIT
-[ -s warnings ] && ECHO "⚠ Compilation warnings!" && SCORE -20
-ECHO "✓ Success!" && SCORE 30
-ECHO
+TRACE "gcc $CFLAGS mycat.c -o mycat &> warnings"
+[ $? -ne 0 ] && MALUS "Compilation" X "errors"
+[ -s warnings ] && MALUS "Compilation" 20 "warnings"
+[ -x mycat ] && BONUS "Linking" 30
 
-### 2) execution
-ECHO "-EXECUTION"
-TRACEV "echo \"abcdef\" > mycat.in"
-TRACEV "cat mycat.in | ./mycat > mycat.out"
-[ ! $? -eq 0 ] && ECHO "⚠ Execution failure!" && EXIT
-TRACEV "diff -q mycat.in mycat.out"
-[ ! $? -eq 0 ] && ECHO "⚠ Your program output is invalid!" && EXIT
-ECHO "✓ Success!" && SCORE 70
+### execution
+TITLE "EXECUTION"
+TRACE "echo \"abcdef\" > mycat.in"
+TRACE "cat mycat.in | ./mycat > mycat.out"
+[ $? -ne 0 ] && MALUS "Return" 10 "bad status"
+TRACE "diff -q mycat.in mycat.out"
+EVAL "Program output" 70 0 "valid" "invalid"
 EXIT

@@ -10,9 +10,10 @@ COPYINPUTS
 ### run
 CFLAGS="-std=c99 -Wall"
 RTRACE "gcc $CFLAGS mycat.c -o mycat"
-[ ! $? -eq 0 ] && echo "⚠ Compilation failure!" && exit 0
+[ ! $? -eq 0 ] && ECHORED "⚠ Compilation failure!" && exit 0
 RTRACE "echo \"abcdef\" > mycat.in && cat mycat.in"
 RTRACE "cat mycat.in | ./mycat | tee mycat.out"
 RTRACE "diff mycat.in mycat.out"
-[ ! $? -eq 0 ] && echo "⚠ Your program output is invalid!" && exit 0
-echo "✓ Your program output is valid..."
+REVAL "Program output" "valid" "invalid"
+# [ ! $? -eq 0 ] && echo "⚠ Your program output is invalid!" && exit 0
+# echo "✓ Your program output is valid..."

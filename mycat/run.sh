@@ -15,5 +15,3 @@ RTRACE "echo \"abcdef\" > mycat.in && cat mycat.in"
 RTRACE "cat mycat.in | ./mycat | tee mycat.out"
 RTRACE "diff mycat.in mycat.out"
 REVAL "Program output" "valid" "invalid"
-# [ ! $? -eq 0 ] && echo "⚠ Your program output is invalid!" && exit 0
-# echo "✓ Your program output is valid..."

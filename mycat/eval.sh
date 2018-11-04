@@ -12,7 +12,7 @@ GRADE=0
 TITLE "COMPILATION"
 CFLAGS="-std=c99 -Wall"
 WFLAGS="-Wl,--wrap=system"
-TRACE "gcc $CFLAGS $WFLAGS mycat.c -o mycat |& warnings"
+TRACE "gcc $CFLAGS $WFLAGS mycat.c -o mycat |& tee warnings"
 [ $? -ne 0 ] && FAILURE "Compilation" X "errors"
 [ -s warnings ] && FAILURE "Compilation" 20 "warnings"
 [ -x mycat ] && SUCCESS "Linking" 30

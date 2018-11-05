@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### 0) initialization
+### initialization
 source env.sh
 source vpltoolkit/toolkit.sh
 [ ! "$RUNDIR" = "$PWD" ] && echo "⚠ RUNDIR is not set correctly!" && exit 0

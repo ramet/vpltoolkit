@@ -12,16 +12,16 @@ GRADE=0
 TITLE "COMPILATION"
 CFLAGS="-std=c99 -Wall"
 WFLAGS="-Wl,--wrap=system"
-TRACE "gcc $CFLAGS $WFLAGS mycat.c -o mycat |& tee warnings"
+TRACE "gcc $CFLAGS $WFLAGS mycat.c -o mycat &> warnings"
 [ $? -ne 0 ] && MALUS "Compilation" X "errors"
-[ -s warnings ] && MALUS "Compilation" 20 "warnings"
+[ -s warnings ] && MALUS "Compilation" 20 "warnings" && CTRACE "cat warnings"
 [ -x mycat ] && BONUS "Linking" 30
 
 ### execution
 TITLE "EXECUTION"
 TRACE "echo \"abcdef\" > mycat.in"
 TRACE "cat mycat.in | ./mycat > mycat.out"
-[ $? -ne 0 ] && MALUS "Return" 10 "bad status"
+[ $? -ne 0 ] && MALUS "Return" 10 "bad exit status"
 TRACE "diff -q mycat.in mycat.out"
 EVAL "Program output" 70 0 "valid" "invalid"
 EXIT

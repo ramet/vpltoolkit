@@ -1,0 +1,9 @@
+#local
+./local.sh -D -m RUN -r https://github.com/ramet/vpltoolkit.git -n tthor -b tthor -s demo/mycat -i demo/mycat/test/solution -v
+
+#docker
+./local.sh -D -d tthor/test:latest -u gitlab -m RUN -r https://github.com/ramet/vpltoolkit.git -n tthor -b tthor -s demo/mycat -i demo/mycat/test/solution -v
+
+#launch XQuartz
+xhost + 127.0.0.1
+./local.sh -g -d tthor/test:latest -u gitlab -m RUN -r https://github.com/ramet/vpltoolkit.git -n tthor -b tthor -s demo/mycat -i demo/mycat/test/solution -v

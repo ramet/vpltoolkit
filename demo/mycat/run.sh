@@ -13,7 +13,7 @@ cp inputs/mycat.c .
 ### compilation
 TITLE "COMPILATION"
 CFLAGS="-std=c99 -Wall"
-WFLAGS="-Wl,--wrap=system"
+#WFLAGS="-Wl,--wrap=system"
 COMPILE "compilation" "gcc $CFLAGS $WFLAGS mycat.c -o mycat" 0 -10 0 || EXIT_GRADE 0
 
 ### execution

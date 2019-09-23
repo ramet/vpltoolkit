@@ -12,7 +12,7 @@ INPUTDIR=""
 VERBOSE=0
 GRAPHIC=0
 MODE="RUN"
-VPLTOOLKIT="https://github.com/orel33/vpltoolkit.git"
+VPLTOOLKIT="https://github.com/ramet/vpltoolkit.git" # "https://github.com/orel33/vpltoolkit.git"
 LOCAL=0
 DEBUG=0
 VERSION="master"    # VPL Toolkit branch
@@ -246,7 +246,7 @@ function DOCKERRUN()
         # DOCKEROPT="$DOCKEROPT --device=/dev/dri:/dev/dri" # direct rendering
     fi
     if [ -S /var/run/docker.sock ] ; then
-        DOCKEROPT="$DOCKEROPT -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker"
+        DOCKEROPT="$DOCKEROPT -v /var/run/docker.sock:/var/run/docker.sock" # -v /usr/bin/docker:/usr/bin/docker"
     else
         echo "⚠ Warning: /var/run/docker.sock not found!"
     fi

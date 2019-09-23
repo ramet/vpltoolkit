@@ -243,7 +243,7 @@ function DOCKERRUN()
         # [ $GRAPHIC -eq 1 ] && echo "DISPLAY=$DISPLAY"
         # [ $GRAPHIC -eq 1 ] && echo "XSOCK=$XSOCK"
         DISPLAY="host.docker.internal:0" # force X11 sock for macos !!!
-        DOCKEROPT="$DOCKEROPT -e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK"
+        DOCKEROPT="$DOCKEROPT -e DISPLAY=$DISPLAY" # -v $XSOCK:$XSOCK"
         # DOCKEROPT="$DOCKEROPT --device=/dev/dri:/dev/dri" # direct rendering
     fi
     if [ -S /var/run/docker.sock ] ; then
